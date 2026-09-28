@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- The App Sandbox is deliberately OFF.
+
+         ScreenCaptureKit can capture other applications' windows from a
+         sandboxed app, but the combination of screen capture, global hot keys
+         and arbitrary-window inspection is what a desktop assistant is for, and
+         a sandboxed build cannot do all three. This is a locally built,
+         self-signed developer tool; if it were shipped through the Mac App Store
+         the sandbox would have to be enabled and the window-title feature
+         dropped.
+
+         Keychain access, network access and microphone access all work without
+         the sandbox. TCC still gates the microphone, speech recognition, screen
+         recording and accessibility — the user is still asked for each. -->
+
+    <key>com.apple.security.app-sandbox</key>
+    <false/>
+
+    <!-- Required for the microphone when the app is sandboxed or hardened. -->
+    <key>com.apple.security.device.audio-input</key>
+    <true/>
+
+    <!-- Outbound HTTPS to the AI and search providers. -->
+    <key>com.apple.security.network.client</key>
+    <true/>
+</dict>
+</plist>
